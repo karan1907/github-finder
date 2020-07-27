@@ -28,13 +28,20 @@ export default class App extends Component {
 
     this.setState({ users: res.data.items, loading: false });
   };
+  // Clear Users
+  clearUsers = () => this.setState({ users: [], loading: false });
   render() {
+    const { loading, users } = this.state;
     return (
       <div>
         <Navbar />
         <div className="container">
-          <Search searchUser={this.searchUser} />
-          <Users loading={this.state.loading} users={this.state.users} />
+          <Search
+            searchUser={this.searchUser}
+            clearUsers={this.clearUsers}
+            showClear={users.length > 0 ? true : false}
+          />
+          <Users loading={loading} users={users} />
         </div>
       </div>
     );

@@ -26,6 +26,11 @@ const Search = props => {
           onClick={onSubmit}
         />
       </form>
+      {props.showClear && (
+        <button className="btn btn-light btn-block" onClick={props.clearUsers}>
+          Clear
+        </button>
+      )}
     </div>
   );
 };
