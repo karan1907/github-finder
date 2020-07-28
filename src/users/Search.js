@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 
-const Search = props => {
+const Search = ({ clearUsers, showClear, searchUser, setAlert }) => {
   const [text, setText] = useState("");
 
   const onSubmit = e => {
     e.preventDefault();
-    props.searchUser(text);
+    if (text === "") {
+      return setAlert("Please Enter Something!", "light");
+    }
+    searchUser(text);
     setText("");
   };
 
@@ -26,8 +29,8 @@ const Search = props => {
           onClick={onSubmit}
         />
       </form>
-      {props.showClear && (
-        <button className="btn btn-light btn-block" onClick={props.clearUsers}>
+      {showClear && (
+        <button className="btn btn-light btn-block" onClick={clearUsers}>
           Clear
         </button>
       )}
